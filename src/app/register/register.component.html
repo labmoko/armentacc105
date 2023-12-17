@@ -1,0 +1,44 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<form [formGroup]="formGroup" (ngSubmit)="register()">
+    <div class="form-outline mb-4">
+      <input type="text" id="firstname" class="form-control form-control-lg" formControlName="firstname" required />
+      <label class="form-label" for="firstname">First Name</label>
+    </div>
+  
+    <div class="form-outline mb-4">
+      <input type="text" id="lastname" class="form-control form-control-lg" formControlName="lastname" required />
+      <label class="form-label" for="lastname">Last Name</label>
+    </div>
+  
+    <div class="form-outline mb-4">
+      <input type="email" id="email" class="form-control form-control-lg" formControlName="email" required />
+      <label class="form-label" for="email">Email</label>
+    </div>
+  
+    <div class="form-outline mb-4">
+      <input type="password" id="password" class="form-control form-control-lg" formControlName="password" required />
+      <label class="form-label" for="password">Password</label>
+      <!-- Display password criteria message -->
+      <div *ngIf="formGroup.get('password')?.hasError('passwordCriteria')" class="text-danger">
+        Please input a password that meets the criteria (lowercase, uppercase, number, and special characters).
+      </div>
+    </div>
+  
+    <div class="form-check d-flex justify-content-center mb-5">
+      <input class="form-check-input me-2" type="checkbox" id="agreeTerms" formControlName="agreeTerms" />
+      <label class="form-check-label" for="agreeTerms">
+        I agree to the terms of service
+      </label>
+    </div>
+  
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+    </div>
+  
+    <p *ngIf="errorMessage" class="text-center text-danger mt-3">{{ errorMessage }}</p>
+    <p class="text-center mt-3">
+        Already have an account? <a routerLink="/signin" class="fw-bold text-body">Sign in here</a>
+      </p>
+  </form>
+
